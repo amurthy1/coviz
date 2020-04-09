@@ -23,7 +23,7 @@ def load_data(src, use_cached=False, update_cache=False):
         if update_cache:
             df.to_csv(f"data/{src}", index=False)
 
-    
+
     # Filter out days with too few cases
     return df[df.cases >= 10]
 

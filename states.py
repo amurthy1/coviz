@@ -4,10 +4,11 @@ import plotly.graph_objects as go
 
 def plot_data_by_state(initial_state = "California"):
     states_df = load_data("us-states.csv")
-    data_by_state = {
-        state: process_data(states_df[states_df.state == state])
-        for state in states_df.state.unique()
-    }
+    data_by_state = {}
+    for state in states_df.state.unique():
+        state_df = states_df[states_df.state == state]
+        if len(state_df) > 2:
+            data_by_state[state] = process_data(state_df)
 
     doubling_text = {}
     for state, state_data in data_by_state.items():
